@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ишеналы Арабаев — Кыргыздын туңгуч агартуучусу · Сабак</title>
+<meta name="description" content="Ишеналы Арабаев жөнүндө билим берүүчү сабак: өмүр жолу, ишмердүүлүгү, негизги эмгектери жана тест. Кыргыздын туңгуч агартуучусу, илимпоз жана коомдук ишмер.">
+<style>
+  :root{
+    --bg:#fafafa;
+    --surface:#ffffff;
+    --ink:#141414;
+    --ink-soft:#52525b;
+    --line:#e4e4e7;
+    --line-strong:#d4d4d8;
+    --accent:#b91c1c;
+    --accent-soft:#fbeaea;
+    --ok:#15803d;
+    --ok-soft:#e7f3ec;
+    --bad:#b91c1c;
+    --bad-soft:#fbeaea;
+    --radius:14px;
+    --maxw:980px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  /* Focus accessibility */
+  a:focus-visible,
+  button:focus-visible,
+  .nav a:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+    border-radius:6px;
+  }
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 22px;
+  }
+
+  /* ===== Header / Nav ===== */
+  header.site{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(250,250,250,.85);
+    backdrop-filter:saturate(160%) blur(10px);
+    -webkit-backdrop-filter:saturate(160%) blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .site-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    height:60px;
+  }
+  .brand{
+    font-weight:700;
+    letter-spacing:.02em;
+    font-size:15px;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    white-space:nowrap;
+  }
+  .brand .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:var(--accent);
+    display:inline-block;
+  }
+  .nav{
+    display:flex;
+    gap:4px;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .nav::-webkit-scrollbar{display:none;}
+  .nav a{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    padding:7px 11px;
+    border-radius:8px;
+    white-space:nowrap;
+    transition:color .18s ease,background .18s ease;
+  }
+  .nav a:hover{color:var(--ink);background:var(--surface);}
+
+  /* ===== Hero ===== */
+  .hero{
+    padding:84px 0 64px;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-size:13px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin:0 0 22px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem,8vw,5.2rem);
+    line-height:1.02;
+    letter-spacing:-.02em;
+    margin:0 0 18px;
+    font-weight:800;
+  }
+  .hero .sub{
+    font-size:clamp(1.05rem,2.6vw,1.35rem);
+    color:var(--ink);
+    font-weight:600;
+    margin:0 0 18px;
+    max-width:680px;
+  }
+  .hero .lead{
+    font-size:1.02rem;
+    color:var(--ink-soft);
+    max-width:640px;
+    margin:0 0 34px;
+  }
+  .cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:15px;
+    font-weight:600;
+    padding:13px 22px;
+    border-radius:999px;
+    border:1px solid var(--ink);
+    background:var(--ink);
+    color:#fff;
+    cursor:pointer;
+    transition:transform .15s ease,opacity .18s ease,background .18s ease,color .18s ease;
+  }
+  .btn:hover{transform:translateY(-2px);opacity:.92;}
+  .btn.ghost{
+    background:transparent;
+    color:var(--ink);
+    border:1px solid var(--line-strong);
+  }
+  .btn.ghost:hover{background:var(--surface);border-color:var(--ink);}
+
+  /* ===== Sections ===== */
+  section.block{
+    padding:70px 0;
+    border-bottom:1px solid var(--line);
+    scroll-margin-top:74px;
+  }
+  .sec-head{
+    margin:0 0 36px;
+  }
+  .sec-num{
+    font-size:13px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    display:block;
+    margin-bottom:10px;
+  }
+  .sec-head h2{
+    font-size:clamp(1.7rem,4.5vw,2.5rem);
+    letter-spacing:-.015em;
+    margin:0;
+    font-weight:800;
+  }
+  .sec-head p.note{
+    color:var(--ink-soft);
+    font-size:1.02rem;
+    margin:14px 0 0;
+    max-width:680px;
+  }
+
+  /* ===== Two-column definition ===== */
+  .grid-2{
+    display:grid;
+    gap:18px;
+    grid-template-columns:1fr;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px;
+    transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease;
+  }
+  .card:hover{
+    border-color:var(--line-strong);
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px -18px rgba(0,0,0,.25);
+  }
+  .card h3{
+    margin:0 0 10px;
+    font-size:1.2rem;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .card h3 .tag{
+    font-size:12px;
+    font-weight:600;
+    color:var(--accent);
+    background:var(--accent-soft);
+    padding:3px 9px;
+    border-radius:999px;
+    letter-spacing:.02em;
+  }
+  .card p{margin:0;color:var(--ink-soft);font-size:.99rem;}
+
+  /* ===== Timeline ===== */
+  .timeline{
+    position:relative;
+    margin:0;
+    padding:0 0 0 4px;
+    list-style:none;
+  }
+  .timeline li{
+    position:relative;
+    padding:0 0 26px 30px;
+    border-left:2px solid var(--line-strong);
+  }
+  .timeline li:last-child{border-left-color:transparent;padding-bottom:0;}
+  .timeline li::before{
+    content:"";
+    position:absolute;
+    left:-7px;top:3px;
+    width:12px;height:12px;
+    border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 0 4px var(--bg);
+  }
+  .timeline .yr{
+    font-weight:800;
+    font-size:1.05rem;
+    letter-spacing:.01em;
+  }
+  .timeline .ev{
+    color:var(--ink-soft);
+    margin-top:3px;
+    font-size:.99rem;
+  }
+
+  /* ===== Activity cards (3 col) ===== */
+  .grid-3{
+    display:grid;
+    gap:18px;
+    grid-template-columns:1fr;
+  }
+  .act h3{font-size:1.12rem;margin:0 0 8px;}
+  .act .k{
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:14px;
+    display:block;
+  }
+
+  /* ===== Works (numbered) ===== */
+  .works{
+    display:grid;
+    gap:16px;
+    grid-template-columns:1fr;
+  }
+  .work{
+    display:flex;
+    gap:18px;
+    align-items:flex-start;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px 24px;
+    transition:border-color .2s ease,transform .2s ease;
+  }
+  .work:hover{border-color:var(--line-strong);transform:translateX(3px);}
+  .work .no{
+    font-size:1.6rem;
+    font-weight:800;
+    color:var(--line-strong);
+    line-height:1;
+    min-width:42px;
+    transition:color .2s ease;
+  }
+  .work:hover .no{color:var(--accent);}
+  .work h3{margin:0 0 5px;font-size:1.08rem;}
+  .work p{margin:0;color:var(--ink-soft);font-size:.97rem;}
+  .work .yr{
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--accent);
+    margin-bottom:4px;
+    display:block;
+  }
+
+  /* ===== Table ===== */
+  .table-wrap{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:var(--surface);
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:.98rem;
+  }
+  caption{
+    text-align:left;
+    padding:16px 20px;
+    font-weight:700;
+    border-bottom:1px solid var(--line);
+    background:#f4f4f5;
+  }
+  th,td{
+    text-align:left;
+    padding:14px 20px;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  th[scope=row]{
+    width:42%;
+    font-weight:600;
+    color:var(--ink);
+    background:#fbfbfb;
+  }
+  td{color:var(--ink-soft);}
+  tbody tr:hover td,tbody tr:hover th{background:#f7f7f8;}
+
+  /* ===== Quiz ===== */
+  .quiz{display:grid;gap:20px;}
+  .q{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px 24px;
+  }
+  .q .qnum{
+    font-size:12.5px;
+    font-weight:700;
+    color:var(--accent);
+    letter-spacing:.05em;
+  }
+  .q h3{
+    margin:6px 0 16px;
+    font-size:1.08rem;
+    font-weight:700;
+    line-height:1.4;
+  }
+  .opts{display:grid;gap:10px;}
+  .opt{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 15px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    cursor:pointer;
+    transition:border-color .15s ease,background .15s ease;
+    font-size:.98rem;
+  }
+  .opt:hover{border-color:var(--line-strong);background:#fafafa;}
+  .opt input{
+    accent-color:var(--accent);
+    width:18px;height:18px;
+    flex:none;
+    cursor:pointer;
+  }
+  .opt .letter{
+    font-weight:700;
+    color:var(--ink-soft);
+    min-width:18px;
+  }
+  .opt.correct{
+    border-color:var(--ok);
+    background:var(--ok-soft);
+  }
+  .opt.correct .letter{color:var(--ok);}
+  .opt.wrong{
+    border-color:var(--bad);
+    background:var(--bad-soft);
+  }
+  .opt.wrong .letter{color:var(--bad);}
+  .opt.locked{cursor:default;}
+
+  .quiz-actions{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:16px;
+    margin-top:6px;
+  }
+  .score{
+    font-weight:700;
+    font-size:1.05rem;
+  }
+  .score .pill{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:999px;
+    background:var(--ink);
+    color:#fff;
+    margin-left:4px;
+  }
+  .hint{color:var(--ink-soft);font-size:.92rem;margin:0;}
+
+  /* ===== Footer ===== */
+  footer.site{
+    padding:48px 0 60px;
+    color:var(--ink-soft);
+    font-size:.95rem;
+  }
+  footer .foot-inner{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+  }
+  footer .up{
+    border:1px solid var(--line-strong);
+    border-radius:999px;
+    padding:9px 16px;
+    font-weight:600;
+    color:var(--ink);
+    transition:background .18s ease,border-color .18s ease;
+  }
+  footer .up:hover{background:var(--surface);border-color:var(--ink);}
+
+  /* ===== Responsive ===== */
+  @media(min-width:720px){
+    .grid-2{grid-template-columns:1fr 1fr;}
+    .grid-3{grid-template-columns:1fr 1fr;}
+  }
+  @media(min-width:920px){
+    .grid-3{grid-template-columns:repeat(3,1fr);}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto !important;transition:none !important;}
+  }
+
+  .visually-hidden{
+    position:absolute;width:1px;height:1px;
+    padding:0;margin:-1px;overflow:hidden;
+    clip:rect(0 0 0 0);white-space:nowrap;border:0;
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="visually-hidden">Негизги мазмунга өтүү</a>
+
+<!-- ===== Header ===== -->
+<header class="site">
+  <div class="wrap site-inner">
+    <a href="#top" class="brand"><span class="dot" aria-hidden="true"></span>И. Арабаев</a>
+    <nav class="nav" aria-label="Сабактын негизги навигациясы">
+      <a href="#kim">Ким болгон?</a>
+      <a href="#omur">Өмүр жолу</a>
+      <a href="#ishmer">Ишмердүүлүгү</a>
+      <a href="#emgek">Эмгектери</a>
+      <a href="#tabl">Таблица</a>
+      <a href="#test">Тест</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<a id="top"></a>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Сабак · Кыргыз агартуучулары</p>
+    <h1>Ишеналы<br>Арабаев</h1>
+    <p class="sub">Кыргыздын туңгуч агартуучусу, илимпоз жана коомдук ишмер</p>
+    <p class="lead">
+      Туңгуч кыргыз «Алиппесинин» автору, биринчи мугалим, кыргыз
+      алфавитин негиздеген окумуштуу. Бул сабакта анын өмүр жолу,
+      ишмердүүлүгү жана элге калтырган мурасы менен таанышасыз.
+    </p>
+    <div class="cta">
+      <a href="#kim" class="btn">Сабакты баштоо →</a>
+      <a href="#test" class="btn ghost">Тестти иштөө</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 01 Ким болгон ===== -->
+<section class="block" id="kim">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">01 — Аныктама</span>
+      <h2>Ким болгон?</h2>
+      <p class="note">
+        Ишеналы Арабаев (Эшенаалы Арабай уулу, 1882–1933) — кыргыз элинин
+        маданий жана илимий тарыхында өзгөчө орду бар инсан. Аны эки негизги
+        кырынан карасак болот.
+      </p>
+    </div>
+    <div class="grid-2">
+      <article class="card">
+        <h3>Агартуучу-илимпоз <span class="tag">Илим</span></h3>
+        <p>
+          Кыргыздын алгачкы агартуучу-илимпозу жана биринчи мугалими.
+          Туңгуч кыргыз «Алиппесинин» автору, араб графикасынын негизинде
+          кыргыз алфавитин түзгөн, грамматика жана табият таануу боюнча
+          алгачкы окуу китептерин жазган.
+        </p>
+      </article>
+      <article class="card">
+        <h3>Коомдук ишмер <span class="tag">Коом</span></h3>
+        <p>
+          Эл агартуу, басма сөз жана улуттук маданиятты өнүктүрүүгө зор салым
+          кошкон коомдук-саясий ишмер. «Манас» эпосун жыйноонун демилгечиси,
+          «Эркин-Тоо» гезитин уюштурууга катышкан жана элинин кызыкчылыгын
+          коргогон инсан.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 02 Өмүр жолу ===== -->
+<section class="block" id="omur">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">02 — Хронология</span>
+      <h2>Өмүр жолу</h2>
+      <p class="note">Негизги даталар жана окуялар боюнча кыскача баян.</p>
+    </div>
+    <ol class="timeline">
+      <li>
+        <div class="yr">1882-жыл</div>
+        <div class="ev">Кочкор районундагы Күн-Батыш айылында дүйнөгө келген.</div>
+      </li>
+      <li>
+        <div class="yr">Жаштык кези</div>
+        <div class="ev">Оренбург, Казань жана Уфа шаарларында билим алган.</div>
+      </li>
+      <li>
+        <div class="yr">1910–1913-жж.</div>
+        <div class="ev">Уфадагы атактуу «Медресе Галияда» окуусун улантат.</div>
+      </li>
+      <li>
+        <div class="yr">1911-жыл</div>
+        <div class="ev">Казак студент Хафиз Сарсекеев менен бирге «Алиппе йаки төтө окуу» окуу китебин жазып чыгарган.</div>
+      </li>
+      <li>
+        <div class="yr">1912-жыл</div>
+        <div class="ev">Оренбургдан «Жазуу өрнөктөрү» (каллиграфия) китебин чыгарган.</div>
+      </li>
+      <li>
+        <div class="yr">1916-жыл</div>
+        <div class="ev">Үркүндөн кийин Кытайга качкан кыргыздарды кайтаруу үчүн Лениндин өзүнө кат жазган.</div>
+      </li>
+      <li>
+        <div class="yr">1922-жыл</div>
+        <div class="ev">Манасчы Сагынбай Орозбак уулунан «Манас» эпосун жазып алууну уюштурган.</div>
+      </li>
+      <li>
+        <div class="yr">1924-жыл</div>
+        <div class="ev">Туңгуч кыргыз алфавитин түзүп, «Кыргыз алиппесин» жазган.</div>
+      </li>
+      <li>
+        <div class="yr">1925-жыл</div>
+        <div class="ev">«Сабатсыз чоңдор үчүн алиппе» китебин жараткан.</div>
+      </li>
+      <li>
+        <div class="yr">1933-жыл</div>
+        <div class="ev">«Улутчул» деген жалаа менен камакка алынып, ошол эле жылы Ташкент түрмөсүндө каза болгон.</div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== 03 Ишмердүүлүгү ===== -->
+<section class="block" id="ishmer">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">03 — Багыттар</span>
+      <h2>Ишмердүүлүгү</h2>
+      <p class="note">Арабаевдин көп тармактуу эмгеги беш негизги багытка бөлүнөт.</p>
+    </div>
+    <div class="grid-3">
+      <article class="card act">
+        <span class="k">Багыт 01</span>
+        <h3>Агартуу жана алиппе</h3>
+        <p>Кыргыздын биринчи мугалими катары балдарды окутуп, туңгуч «Алиппени» жаратып, элди сабаттуулукка үндөгөн.</p>
+      </article>
+      <article class="card act">
+        <span class="k">Багыт 02</span>
+        <h3>Тил жана алфавит</h3>
+        <p>1924-жылы араб графикасынын негизинде туңгуч кыргыз алфавитин түзүп, грамматика боюнча окуу китебин жазган.</p>
+      </article>
+      <article class="card act">
+        <span class="k">Багыт 03</span>
+        <h3>«Манас» эпосун жыйноо</h3>
+        <p>1922-жылы Сагынбай Орозбак уулунан «Манас» эпосун жазып алуунун биринчи демилгечиси болгон.</p>
+      </article>
+      <article class="card act">
+        <span class="k">Багыт 04</span>
+        <h3>Журналистика</h3>
+        <p>Кыргыздын туңгуч гезити «Эркин-Тоону» уюштурууга катышып, анын 1-санына макала жазган.</p>
+      </article>
+      <article class="card act">
+        <span class="k">Багыт 05</span>
+        <h3>Коомдук-саясий иш</h3>
+        <p>Элинин кызыкчылыгын коргоп, Үркүндөн кийин качкан кыргыздарды кайтаруу маселесин эң жогорку деңгээлде көтөргөн.</p>
+      </article>
+      <article class="card act">
+        <span class="k">Багыт 06</span>
+        <h3>Илимий мурас</h3>
+        <p>Тыныбектен «Семетейдин Айчүрөккө үйлөнүшү» эпизодун жазып алып, кыргыз фольклорун кагазга түшүргөн.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 04 Эмгектери ===== -->
+<section class="block" id="emgek">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">04 — Мурас</span>
+      <h2>Негизги эмгектери</h2>
+      <p class="note">Кыргыз билим берүүсүнүн пайдубалын түптөгөн негизги китептери.</p>
+    </div>
+    <div class="works">
+      <article class="work">
+        <div class="no" aria-hidden="true">01</div>
+        <div>
+          <span class="yr">1911-жыл</span>
+          <h3>«Алиппе йаки төтө окуу»</h3>
+          <p>Хафиз Сарсекеев менен бирге кыргыз-казак балдары үчүн жазылган алгачкы окуу китеби.</p>
+        </div>
+      </article>
+      <article class="work">
+        <div class="no" aria-hidden="true">02</div>
+        <div>
+          <span class="yr">1912-жыл</span>
+          <h3>«Жазуу өрнөктөрү»</h3>
+          <p>Каллиграфия жана таза жазуунун үлгүлөрү боюнча Оренбургдан чыккан китеп.</p>
+        </div>
+      </article>
+      <article class="work">
+        <div class="no" aria-hidden="true">03</div>
+        <div>
+          <span class="yr">1924-жыл</span>
+          <h3>«Кыргыз алиппеси»</h3>
+          <p>Араб графикасынын негизиндеги туңгуч кыргыз алфавити жана эң белгилүү эмгеги.</p>
+        </div>
+      </article>
+      <article class="work">
+        <div class="no" aria-hidden="true">04</div>
+        <div>
+          <span class="yr">1924-жыл</span>
+          <h3>Грамматика жана табият таануу окуу китеби</h3>
+          <p>Кыргыз тилиндеги алгачкы грамматика жана табият таануу боюнча окуу китеби.</p>
+        </div>
+      </article>
+      <article class="work">
+        <div class="no" aria-hidden="true">05</div>
+        <div>
+          <span class="yr">1925-жыл</span>
+          <h3>«Сабатсыз чоңдор үчүн алиппе»</h3>
+          <p>Чоң кишилерди сабаттуулукка үйрөтүү үчүн арналган атайын алиппе.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 05 Таблица ===== -->
+<section class="block" id="tabl">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">05 — Жыйынтык</span>
+      <h2>Негизги фактылар таблицасы</h2>
+      <p class="note">Сабактын маанилүү маалыматтары бир жерде.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <caption>Ишеналы Арабаев — кыскача маалымкат</caption>
+        <tbody>
+          <tr>
+            <th scope="row">Толук аты</th>
+            <td>Ишеналы Арабаев (Эшенаалы Арабай уулу)</td>
+          </tr>
+          <tr>
+            <th scope="row">Туулган жылы жана жери</th>
+            <td>1882-жыл, Кочкор району, Күн-Батыш айылы</td>
+          </tr>
+          <tr>
+            <th scope="row">Каза болгон жылы жана жери</th>
+            <td>1933-жыл, Ташкент шаары (түрмөдө)</td>
+          </tr>
+          <tr>
+            <th scope="row">Билими</th>
+            <td>Оренбург, Казань, Уфа («Медресе Галия», 1910–1913)</td>
+          </tr>
+          <tr>
+            <th scope="row">Негизги эмгектери</th>
+            <td>«Кыргыз алиппеси» (1924), «Алиппе йаки төтө окуу» (1911), «Жазуу өрнөктөрү» (1912), «Сабатсыз чоңдор үчүн алиппе» (1925)</td>
+          </tr>
+          <tr>
+            <th scope="row">Эң белгилүү салымы</th>
+            <td>Туңгуч кыргыз алфавитин жана «Алиппесин» түзүү; «Манас» эпосун жазып алууну уюштуруу</td>
+          </tr>
+          <tr>
+            <th scope="row">Ысымы берилген окуу жай</th>
+            <td>Бишкектеги Кыргыз мамлекеттик педагогикалык университети (КМПУ)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 06 Тест ===== -->
+<section class="block" id="test">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">06 — Билимиңди текшер</span>
+      <h2>Тест</h2>
+      <p class="note">Ар бир суроого бир туура жоопту тандаңыз, анан «Жоопторду текшерүү» баскычын басыңыз.</p>
+    </div>
+
+    <form class="quiz" id="quiz" novalidate>
+
+      <fieldset class="q" data-answer="A">
+        <span class="qnum">Суроо 01</span>
+        <h3>Ишеналы Арабаев кайсы жылы туулган?</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q1" value="A"><span class="letter">A</span><span>1882</span></label>
+          <label class="opt"><input type="radio" name="q1" value="B"><span class="letter">B</span><span>1900</span></label>
+          <label class="opt"><input type="radio" name="q1" value="C"><span class="letter">C</span><span>1924</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q" data-answer="B">
+        <span class="qnum">Суроо 02</span>
+        <h3>Арабаевдин эң белгилүү эмгеги кайсы?</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q2" value="A"><span class="letter">A</span><span>«Манас» эпосу</span></label>
+          <label class="opt"><input type="radio" name="q2" value="B"><span class="letter">B</span><span>Кыргыз «Алиппеси»</span></label>
+          <label class="opt"><input type="radio" name="q2" value="C"><span class="letter">C</span><span>«Эркин-Тоо» гезити</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q" data-answer="B">
+        <span class="qnum">Суроо 03</span>
+        <h3>1922-жылы Арабаев кимден «Манас» эпосун жаздырып алган?</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q3" value="A"><span class="letter">A</span><span>Тыныбектен</span></label>
+          <label class="opt"><input type="radio" name="q3" value="B"><span class="letter">B</span><span>Сагынбай Орозбак уулунан</span></label>
+          <label class="opt"><input type="radio" name="q3" value="C"><span class="letter">C</span><span>Токтогулдан</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q" data-answer="A">
+        <span class="qnum">Суроо 04</span>
+        <h3>Арабаевдин ысмы азыр кайсы окуу жайга берилген?</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q4" value="A"><span class="letter">A</span><span>КМПУ (педагогикалык университет)</span></label>
+          <label class="opt"><input type="radio" name="q4" value="B"><span class="letter">B</span><span>КУУ</span></label>
+          <label class="opt"><input type="radio" name="q4" value="C"><span class="letter">C</span><span>КТУ «Манас»</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q" data-answer="B">
+        <span class="qnum">Суроо 05</span>
+        <h3>Арабаев кайсы шаарда каза болгон?</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q5" value="A"><span class="letter">A</span><span>Бишкек</span></label>
+          <label class="opt"><input type="radio" name="q5" value="B"><span class="letter">B</span><span>Ташкент</span></label>
+          <label class="opt"><input type="radio" name="q5" value="C"><span class="letter">C</span><span>Москва</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q" data-answer="C">
+        <span class="qnum">Суроо 06</span>
+        <h3>Арабаев кайсы шаарда «Медресе Галияда» билим алган?</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q6" value="A"><span class="letter">A</span><span>Казань</span></label>
+          <label class="opt"><input type="radio" name="q6" value="B"><span class="letter">B</span><span>Оренбург</span></label>
+          <label class="opt"><input type="radio" name="q6" value="C"><span class="letter">C</span><span>Уфа</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q" data-answer="A">
+        <span class="qnum">Суроо 07</span>
+        <h3>1912-жылы Оренбургдан чыккан китеп кайсы?</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q7" value="A"><span class="letter">A</span><span>«Жазуу өрнөктөрү»</span></label>
+          <label class="opt"><input type="radio" name="q7" value="B"><span class="letter">B</span><span>«Кыргыз алиппеси»</span></label>
+          <label class="opt"><input type="radio" name="q7" value="C"><span class="letter">C</span><span>«Сабатсыз чоңдор үчүн алиппе»</span></label>
+        </div>
+      </fieldset>
+
+      <div class="quiz-actions">
+        <button type="button" class="btn" id="checkBtn">Жоопторду текшерүү</button>
+        <button type="button" class="btn ghost" id="resetBtn" hidden>Кайра баштоо</button>
+        <span class="score" id="score" role="status" aria-live="polite"></span>
+      </div>
+      <p class="hint" id="hint">Бардык 7 суроого жооп бергениңизди текшериңиз.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="site">
+  <div class="wrap foot-inner">
+    <span>Ишеналы Арабаев · Сабак материалы · 2026</span>
+    <a href="#top" class="up">↑ Жогоруга</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  var quiz   = document.getElementById("quiz");
+  var checkBtn = document.getElementById("checkBtn");
+  var resetBtn = document.getElementById("resetBtn");
+  var scoreEl  = document.getElementById("score");
+  var hintEl   = document.getElementById("hint");
+  var questions = Array.prototype.slice.call(quiz.querySelectorAll(".q"));
+
+  function clearMarks(){
+    quiz.querySelectorAll(".opt").forEach(function(opt){
+      opt.classList.remove("correct","wrong","locked");
+    });
+  }
+
+  function checkAnswers(){
+    var total = questions.length;
+    var correct = 0;
+    var answeredAll = true;
+
+    questions.forEach(function(q){
+      var answer = q.getAttribute("data-answer");
+      var chosen = q.querySelector("input:checked");
+      var opts = q.querySelectorAll(".opt");
+
+      opts.forEach(function(opt){ opt.classList.add("locked"); });
+
+      if(!chosen){ answeredAll = false; }
+
+      opts.forEach(function(opt){
+        var input = opt.querySelector("input");
+        if(input.value === answer){
+          opt.classList.add("correct");
+        }
+        if(chosen && input.checked && input.value !== answer){
+          opt.classList.add("wrong");
+        }
+      });
+
+      if(chosen && chosen.value === answer){ correct++; }
+    });
+
+    scoreEl.innerHTML = "Жыйынтык: <span class='pill'>" + correct + " / " + total + "</span>";
+
+    if(!answeredAll){
+      hintEl.textContent = "Эскертүү: айрым суроолорго жооп берилген жок — туура жооптор жашыл менен белгиленди.";
+    } else if(correct === total){
+      hintEl.textContent = "Эң мыкты! Бардык суроого туура жооп бердиңиз. 🎉";
+    } else if(correct >= Math.ceil(total/2)){
+      hintEl.textContent = "Жакшы натыйжа! Сабакты дагы бир жолу карап чыксаңыз болот.";
+    } else {
+      hintEl.textContent = "Тайсалдабаңыз — сабакты кайра окуп, тестти кайталап көрүңүз.";
+    }
+
+    checkBtn.hidden = true;
+    resetBtn.hidden = false;
+    resetBtn.focus();
+  }
+
+  function resetQuiz(){
+    clearMarks();
+    quiz.querySelectorAll("input").forEach(function(i){ i.checked = false; });
+    scoreEl.textContent = "";
+    hintEl.textContent = "Бардык 7 суроого жооп бергениңизди текшериңиз.";
+    checkBtn.hidden = false;
+    resetBtn.hidden = true;
+    quiz.scrollIntoView({behavior:"smooth",block:"start"});
+    checkBtn.focus();
+  }
+
+  checkBtn.addEventListener("click", checkAnswers);
+  resetBtn.addEventListener("click", resetQuiz);
+})();
+</script>
+
+</body>
+</html>
