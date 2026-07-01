@@ -316,6 +316,20 @@
     overflow:hidden;
     background:var(--surface);
   }
+
+  /* ===== Video ===== */
+  .video-wrap{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:#000;
+    margin:26px 0 18px;
+  }
+  .video-wrap video{
+    display:block;
+    width:100%;
+    height:auto;
+  }
   table{
     width:100%;
     border-collapse:collapse;
@@ -561,6 +575,12 @@
       жумган, 1958-жылы гана толук акталган. Бүгүн анын ысымы Бишкектеги
       Кыргыз мамлекеттик университетине берилген.
     </p>
+    <div class="video-wrap">
+      <video controls preload="metadata" playsinline>
+        <source src="media/arabaev.mp4" type="video/mp4">
+        Сиздин браузер видео этикеткасын колдобойт.
+      </video>
+    </div>
     <p class="hint">Даректер: ky.wikipedia.org, ru.wikipedia.org, sputnik.kg, kutbilim.kg, azattyk.org</p>
   </div>
 </section>
