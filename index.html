@@ -434,6 +434,64 @@
     margin-left:4px;
   }
   .hint{color:var(--ink-soft);font-size:.92rem;margin:0;}
+  .hint.warn{color:var(--bad);font-weight:600;}
+
+  .student-id{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px 24px;
+    margin-bottom:4px;
+  }
+  .student-id label{
+    font-weight:700;
+    font-size:.95rem;
+  }
+  .student-id input{
+    font-family:inherit;
+    font-size:1rem;
+    padding:12px 15px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    background:var(--bg);
+    color:var(--ink);
+  }
+  .student-id input:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:2px;
+  }
+
+  /* ===== Grammar exercise ===== */
+  .gq-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .gq-row label{
+    flex:1 1 220px;
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+    font-size:.9rem;
+    font-weight:600;
+    color:var(--ink-soft);
+  }
+  .gq-select{
+    font-family:inherit;
+    font-size:.98rem;
+    padding:11px 14px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    background:var(--surface);
+    color:var(--ink);
+    cursor:pointer;
+  }
+  .gq-select.correct{border-color:var(--ok);background:var(--ok-soft);color:var(--ok);}
+  .gq-select.wrong{border-color:var(--bad);background:var(--bad-soft);color:var(--bad);}
+  .gq-select:disabled{cursor:default;opacity:1;}
 
   /* ===== Footer ===== */
   footer.site{
@@ -494,6 +552,7 @@
       <a href="#emgek">Эмгектери</a>
       <a href="#tabl">Таблица</a>
       <a href="#test">Тест</a>
+      <a href="#grammar">Грамматика</a>
     </nav>
   </div>
 </header>
@@ -803,6 +862,12 @@
 
     <form class="quiz" id="quiz" novalidate>
 
+      <div class="student-id">
+        <label for="studentName">Аты-жөнү (ФИО)</label>
+        <input type="text" id="studentName" name="studentName" placeholder="Аты-жөнүңүздү жазыңыз" autocomplete="name">
+        <p class="hint warn" id="nameWarning" hidden>Алгач аты-жөнүңүздү жазыңыз.</p>
+      </div>
+
       <fieldset class="q" data-answer="A">
         <span class="qnum">Суроо 01</span>
         <h3>Ишеналы Арабаев кайсы жылы туулган?</h3>
@@ -933,6 +998,147 @@
   </div>
 </section>
 
+<!-- ===== 08 Грамматика ===== -->
+<section class="block" id="grammar">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">08 — Грамматика</span>
+      <h2>Ээ жана баяндооч</h2>
+      <p class="note">Ар бир сүйлөмдөн ээни (ким? эмне?) жана баяндоочту (эмне кылды?) тандаңыз.</p>
+    </div>
+
+    <form class="quiz" id="grammarQuiz" novalidate>
+
+      <fieldset class="q gq" data-subject="Ишеналы Арабаев" data-predicate="туулган">
+        <span class="qnum">Сүйлөм 01</span>
+        <h3>«Ишеналы Арабаев 1882-жылы туулган.»</h3>
+        <div class="gq-row">
+          <label>Ээ (ким? эмне?)
+            <select class="gq-select gq-subject">
+              <option value="">— тандаңыз —</option>
+              <option>Ишеналы Арабаев</option>
+              <option>1882-жылы</option>
+              <option>туулган</option>
+            </select>
+          </label>
+          <label>Баяндооч (эмне кылды?)
+            <select class="gq-select gq-predicate">
+              <option value="">— тандаңыз —</option>
+              <option>Ишеналы Арабаев</option>
+              <option>1882-жылы</option>
+              <option>туулган</option>
+            </select>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q gq" data-subject="Ал" data-predicate="жазган">
+        <span class="qnum">Сүйлөм 02</span>
+        <h3>«Ал 1911-жылы биринчи «Алиппени» жазган.»</h3>
+        <div class="gq-row">
+          <label>Ээ (ким? эмне?)
+            <select class="gq-select gq-subject">
+              <option value="">— тандаңыз —</option>
+              <option>Ал</option>
+              <option>1911-жылы</option>
+              <option>«Алиппени»</option>
+              <option>жазган</option>
+            </select>
+          </label>
+          <label>Баяндооч (эмне кылды?)
+            <select class="gq-select gq-predicate">
+              <option value="">— тандаңыз —</option>
+              <option>Ал</option>
+              <option>1911-жылы</option>
+              <option>«Алиппени»</option>
+              <option>жазган</option>
+            </select>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q gq" data-subject="Сагымбай Орозбак уулу" data-predicate="айткан">
+        <span class="qnum">Сүйлөм 03</span>
+        <h3>«Сагымбай Орозбак уулу «Манас» эпосун айткан.»</h3>
+        <div class="gq-row">
+          <label>Ээ (ким? эмне?)
+            <select class="gq-select gq-subject">
+              <option value="">— тандаңыз —</option>
+              <option>Сагымбай Орозбак уулу</option>
+              <option>«Манас» эпосун</option>
+              <option>айткан</option>
+            </select>
+          </label>
+          <label>Баяндооч (эмне кылды?)
+            <select class="gq-select gq-predicate">
+              <option value="">— тандаңыз —</option>
+              <option>Сагымбай Орозбак уулу</option>
+              <option>«Манас» эпосун</option>
+              <option>айткан</option>
+            </select>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q gq" data-subject="Арабаев" data-predicate="түзгөн">
+        <span class="qnum">Сүйлөм 04</span>
+        <h3>«Арабаев 1924-жылы кыргыз алфавитин түзгөн.»</h3>
+        <div class="gq-row">
+          <label>Ээ (ким? эмне?)
+            <select class="gq-select gq-subject">
+              <option value="">— тандаңыз —</option>
+              <option>Арабаев</option>
+              <option>1924-жылы</option>
+              <option>кыргыз алфавитин</option>
+              <option>түзгөн</option>
+            </select>
+          </label>
+          <label>Баяндооч (эмне кылды?)
+            <select class="gq-select gq-predicate">
+              <option value="">— тандаңыз —</option>
+              <option>Арабаев</option>
+              <option>1924-жылы</option>
+              <option>кыргыз алфавитин</option>
+              <option>түзгөн</option>
+            </select>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q gq" data-subject="Университет" data-predicate="алып жүрөт">
+        <span class="qnum">Сүйлөм 05</span>
+        <h3>«Университет анын ысымын алып жүрөт.»</h3>
+        <div class="gq-row">
+          <label>Ээ (ким? эмне?)
+            <select class="gq-select gq-subject">
+              <option value="">— тандаңыз —</option>
+              <option>Университет</option>
+              <option>анын ысымын</option>
+              <option>алып жүрөт</option>
+            </select>
+          </label>
+          <label>Баяндооч (эмне кылды?)
+            <select class="gq-select gq-predicate">
+              <option value="">— тандаңыз —</option>
+              <option>Университет</option>
+              <option>анын ысымын</option>
+              <option>алып жүрөт</option>
+            </select>
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="quiz-actions">
+        <button type="button" class="btn" id="gqCheckBtn">Жоопторду текшерүү</button>
+        <button type="button" class="btn ghost" id="gqResetBtn" hidden>Кайра баштоо</button>
+        <span class="score" id="gqScore" role="status" aria-live="polite"></span>
+      </div>
+      <p class="hint warn" id="gqNameWarning" hidden>Алгач «Тест» бөлүмүндө аты-жөнүңүздү жазыңыз.</p>
+      <p class="hint" id="gqHint">Бардык 5 сүйлөмгө жооп бергениңизди текшериңиз.</p>
+    </form>
+  </div>
+</section>
+
 </main>
 
 <!-- ===== Footer ===== -->
@@ -952,6 +1158,8 @@
   var resetBtn = document.getElementById("resetBtn");
   var scoreEl  = document.getElementById("score");
   var hintEl   = document.getElementById("hint");
+  var nameInput = document.getElementById("studentName");
+  var nameWarning = document.getElementById("nameWarning");
   var questions = Array.prototype.slice.call(quiz.querySelectorAll(".q"));
 
   function clearMarks(){
@@ -961,6 +1169,13 @@
   }
 
   function checkAnswers(){
+    if(!nameInput.value.trim()){
+      nameWarning.hidden = false;
+      nameInput.focus();
+      return;
+    }
+    nameWarning.hidden = true;
+
     var total = questions.length;
     var correct = 0;
     var answeredAll = true;
@@ -987,7 +1202,7 @@
       if(chosen && chosen.value === answer){ correct++; }
     });
 
-    scoreEl.innerHTML = "Жыйынтык: <span class='pill'>" + correct + " / " + total + "</span>";
+    scoreEl.innerHTML = "Урматтуу " + nameInput.value.trim() + ", жыйынтыгыңыз: <span class='pill'>" + correct + " / " + total + "</span>";
 
     if(!answeredAll){
       hintEl.textContent = "Эскертүү: айрым суроолорго жооп берилген жок — туура жооптор жашыл менен белгиленди.";
@@ -1006,8 +1221,9 @@
 
   function resetQuiz(){
     clearMarks();
-    quiz.querySelectorAll("input").forEach(function(i){ i.checked = false; });
+    quiz.querySelectorAll('input[type="radio"]').forEach(function(i){ i.checked = false; });
     scoreEl.textContent = "";
+    nameWarning.hidden = true;
     hintEl.textContent = "Бардык 12 суроого жооп бергениңизди текшериңиз.";
     checkBtn.hidden = false;
     resetBtn.hidden = true;
@@ -1017,6 +1233,93 @@
 
   checkBtn.addEventListener("click", checkAnswers);
   resetBtn.addEventListener("click", resetQuiz);
+})();
+
+(function(){
+  "use strict";
+
+  var gquiz = document.getElementById("grammarQuiz");
+  var checkBtn = document.getElementById("gqCheckBtn");
+  var resetBtn = document.getElementById("gqResetBtn");
+  var scoreEl  = document.getElementById("gqScore");
+  var hintEl   = document.getElementById("gqHint");
+  var nameWarning = document.getElementById("gqNameWarning");
+  var nameInput = document.getElementById("studentName");
+  var items = Array.prototype.slice.call(gquiz.querySelectorAll(".gq"));
+  var defaultHint = hintEl.textContent;
+
+  function checkGrammar(){
+    if(!nameInput.value.trim()){
+      nameWarning.hidden = false;
+      nameInput.focus();
+      return;
+    }
+    nameWarning.hidden = true;
+
+    var total = items.length * 2;
+    var correct = 0;
+    var answeredAll = true;
+
+    items.forEach(function(item){
+      var subjectAnswer = item.getAttribute("data-subject");
+      var predicateAnswer = item.getAttribute("data-predicate");
+      var subjectSelect = item.querySelector(".gq-subject");
+      var predicateSelect = item.querySelector(".gq-predicate");
+
+      [[subjectSelect, subjectAnswer], [predicateSelect, predicateAnswer]].forEach(function(pair){
+        var select = pair[0], answer = pair[1];
+        select.classList.remove("correct","wrong");
+
+        if(!select.value){ answeredAll = false; }
+
+        if(select.value === answer){
+          select.classList.add("correct");
+          correct++;
+        } else if(select.value){
+          select.classList.add("wrong");
+        }
+
+        select.disabled = true;
+      });
+    });
+
+    scoreEl.innerHTML = "Жыйынтык: <span class='pill'>" + correct + " / " + total + "</span>";
+
+    if(!answeredAll){
+      hintEl.textContent = "Эскертүү: айрым талаалар толтурулган жок.";
+    } else if(correct === total){
+      hintEl.textContent = "Эң мыкты! Ээ менен баяндоочту так таптыңыз. 🎉";
+    } else if(correct >= Math.ceil(total/2)){
+      hintEl.textContent = "Жакшы натыйжа! Кайра карап чыксаңыз болот.";
+    } else {
+      hintEl.textContent = "Тайсалдабаңыз — ээ жана баяндооч эмне экенин кайра эстеп көрүңүз.";
+    }
+
+    checkBtn.hidden = true;
+    resetBtn.hidden = false;
+    resetBtn.focus();
+  }
+
+  function resetGrammar(){
+    items.forEach(function(item){
+      ["gq-subject","gq-predicate"].forEach(function(cls){
+        var select = item.querySelector("." + cls);
+        select.value = "";
+        select.disabled = false;
+        select.classList.remove("correct","wrong");
+      });
+    });
+    scoreEl.textContent = "";
+    nameWarning.hidden = true;
+    hintEl.textContent = defaultHint;
+    checkBtn.hidden = false;
+    resetBtn.hidden = true;
+    gquiz.scrollIntoView({behavior:"smooth",block:"start"});
+    checkBtn.focus();
+  }
+
+  checkBtn.addEventListener("click", checkGrammar);
+  resetBtn.addEventListener("click", resetGrammar);
 })();
 </script>
 
